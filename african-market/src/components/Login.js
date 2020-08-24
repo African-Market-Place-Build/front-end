@@ -16,13 +16,51 @@ const StyledLogin = styled.div`
         margin-top: 5%;
         font-size: 1.3rem;
     }
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 30px;
+    }
+    label {
+        margin-bottom: 10%;
+    }
 `
 
 export const Login = (props) => {
+    
+    const {register, handleSubmit, setValue, errors } = useForm()
+
+    const onSubmit = (data) => {
+        console.log(data)
+        setValue('username', '')
+        setValue('password', '')
+    }
+
     return (
         <StyledLogin>
             <h2>Login</h2>
-
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <label>Username:&nbsp;
+                    <input 
+                        type='text'
+                        name='username'
+                        placeholder='Username'
+                        ref={register({required: true, pattern: /^\S+@\S+\.\S+$/})}
+                    />
+                    {errors.username && <p>Username is required from login</p>}
+                </label>
+                <label>Password: &nbsp;
+                    <input 
+                        type='password'
+                        name='password'
+                        placeholder='Password'
+                        ref={register({required: true})}
+                    />
+                    {errors.password && <p>Password is required for login</p>}
+                </label>
+                <button>Submit</button>
+            </form>
         </StyledLogin>
     )
 }
