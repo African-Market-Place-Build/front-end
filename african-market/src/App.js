@@ -2,6 +2,7 @@ import React from 'react';
 import {Link, Switch, Route} from 'react-router-dom'
 import styled from 'styled-components'
 import {Login} from './components/Login'
+import SignUp from './components/Register'
 
 const StyledNav = styled.nav`
   display: flex;
