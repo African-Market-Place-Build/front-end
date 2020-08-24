@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link, Switch, Route} from 'react-router-dom'
 import styled from 'styled-components'
+import {Login} from './components/Login'
 
 const StyledNav = styled.nav`
   display: flex;
@@ -42,6 +43,11 @@ function App() {
         </li>
       </ul>
       </StyledNav>
+      <Switch>
+        <Route>
+          <Login />
+        </Route>
+      </Switch>
     </div>
   );
 }
