@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { registerUser } from '../actions/marketActions'
+import {useHistory} from 'react-router-dom'
 
 const LoginBox = styled.div`
     position: absolute;
@@ -86,7 +87,8 @@ const Button = styled.button`
 
 const SignUp = (props) => {
     const { register, handleSubmit, errors, setValue } = useForm()
-
+    
+    const history = useHistory()
 
     const onSubmit = (data) => {
 
@@ -96,6 +98,7 @@ const SignUp = (props) => {
             password: data.password
         }
         props.registerUser(newUser)
+        history.push('/login')
         setValue('username', '')
         setValue('password', '')
         setValue('email', '')
@@ -108,7 +111,7 @@ const SignUp = (props) => {
 
                 <UserBox className="user-box">
                     <label htmlFor="name"><H2>Name:</H2> </label>
-                    <Input type='text' placeholder='Enter your first and last name' name='name' ref={register} />
+                    <Input type='text' placeholder='Enter your first and last name' name='username' ref={register} />
 
                 </UserBox>
 

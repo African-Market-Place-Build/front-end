@@ -1,9 +1,11 @@
 import React from 'react'
 import {useForm} from 'react-hook-form'
 import styled from 'styled-components'
+import axios from 'axios'
 import {connect} from 'react-redux'
 import {loginUser} from '../actions/marketActions'
 import {useHistory} from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 
 const StyledLogin = styled.div`
@@ -31,23 +33,38 @@ const StyledLogin = styled.div`
     }
 `
 
+export const LOGIN = "LOGIN"
+
 const Login = (props) => {
     
+    const dispatch = useDispatch()
+
     const {register, handleSubmit, setValue, errors } = useForm()
 
     const history = useHistory()
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         
         const user = {
             username: data.username,
             password: data.password
         }
         
-        props.loginUser(user)
-        history.push('/market')
+        axios
+        .post("https://african-market-place-bw.herokuapp.com/api/auth/login", user)
+        .then((res) => {
+            localStorage.setItem('token', res.data.token)
+            console.log(res)
+            history.push('/market')
+            dispatch({type: LOGIN, payload: res.data})
+        })
+        .catch(err => {
+            console.log(err)
+        })
         setValue('username', '')
         setValue('password', '')
+        
+        
     }
 
     return (
