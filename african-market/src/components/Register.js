@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import {connect} from 'react-redux'
 import {registerUser} from '../actions/marketActions'
 
-const LoginBox = styled.div`
+const StyledForm = styled.form`
     position: absolute;
   top: 50%;
   left: 50%;
@@ -37,8 +37,8 @@ const SignUp = (props) => {
 
     return (
 
-        <LoginBox>
-        <form onSubmit={handleSubmit(onSubmit)}>
+      
+        <StyledForm onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="name">Name: </label>
             <input type='text' placeholder='Your name' name='name' ref={register} />
 
@@ -55,8 +55,8 @@ const SignUp = (props) => {
                 ref={register({ required: true, minLength: 8 })} />
             <input type='submit' />
             {errors.password && <p>Pasassword must be atleast 8 characters!</p>}
-        </form>
-        </LoginBox>
+        </StyledForm>
+     
     )
 
 }
