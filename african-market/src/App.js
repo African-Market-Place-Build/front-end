@@ -1,8 +1,10 @@
 import React from 'react';
 import {Link, Switch, Route} from 'react-router-dom'
 import styled from 'styled-components'
-import {Login} from './components/Login'
+import Login from './components/Login'
 import SignUp from './components/Register'
+import PrivateRoute from './components/PrivateRoute'
+import MarketPage from './components/MarketPage'
 
 const StyledNav = styled.nav`
   display: flex;
@@ -48,6 +50,7 @@ function App() {
         <Route path="/register">
           <SignUp />
         </Route>
+        <PrivateRoute exact path="/market" component={MarketPage}/>
         <Route>
           <Login />
         </Route>
