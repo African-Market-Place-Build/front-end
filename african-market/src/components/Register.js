@@ -7,8 +7,10 @@ import {registerUser} from '../actions/marketActions'
 const Form = styled.form`
 color: blue;`
 
+
 const SignUp = (props) => {
     const { register, handleSubmit, errors, setValue } = useForm()
+
 
     const onSubmit = (data) => {
 
