@@ -26,7 +26,7 @@ const SignUp = () => {
             <label htmlFor="email">Email: </label>
             <input type='text'
                 placeholder='Email'
-                name='email' ref={register}
+                name='email' 
                 ref={register({required: true, pattern: /^\S+@\S+\.\S+$/})}/>
             {errors.email && <p>Requires a valid email address</p>}
             <label htmlFor="password">Password: </label>
