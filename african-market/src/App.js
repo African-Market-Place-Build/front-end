@@ -47,10 +47,10 @@ function App() {
       </ul>
       </StyledNav>
       <Switch>
+        <PrivateRoute exact path="/market" component={MarketPage}/>
         <Route path="/register">
           <SignUp />
         </Route>
-        <PrivateRoute exact path="/market" component={MarketPage}/>
         <Route>
           <Login />
         </Route>
