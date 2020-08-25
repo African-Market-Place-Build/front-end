@@ -8,7 +8,7 @@ color: blue;`
 
 const SignUp = () => {
     const { register, handleSubmit, errors } = useForm()
-
+//Onsubmit
     const onSubmit = (data) => {
 
         const newUser = {
