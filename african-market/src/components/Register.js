@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { registerUser } from '../actions/marketActions'
 
-const LoginBox = styled.div`
+const StyledForm = styled.form`
     position: absolute;
   top: 50%;
   left: 50%;
@@ -105,6 +105,7 @@ const SignUp = (props) => {
 
     return (
 
+
         <LoginBox className="LoginBox">
             <form onSubmit={handleSubmit(onSubmit)}>
 
@@ -139,6 +140,7 @@ const SignUp = (props) => {
                 {errors.email && <P>Please enter a valid email address</P>}
             </form>
         </LoginBox>
+
     )
 
 }
