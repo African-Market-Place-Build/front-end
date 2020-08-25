@@ -4,8 +4,18 @@ import styled from 'styled-components'
 import {connect} from 'react-redux'
 import {registerUser} from '../actions/marketActions'
 
-const Form = styled.form`
-color: blue;`
+const LoginBox = styled.div`
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+`
 
 
 const SignUp = (props) => {
@@ -26,9 +36,13 @@ const SignUp = (props) => {
     }
 
     return (
-        <Form onSubmit={handleSubmit(onSubmit)}>
-            <label htmlFor="username">Username: </label>
-            <input type='text' placeholder='Your name' name='username' ref={register} />
+
+        <LoginBox>
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <label htmlFor="name">Name: </label>
+            <input type='text' placeholder='Your name' name='name' ref={register} />
+
+
             <label htmlFor="email">Email: </label>
             <input type='text'
                 placeholder='Email'
@@ -41,8 +55,8 @@ const SignUp = (props) => {
                 ref={register({ required: true, minLength: 8 })} />
             <input type='submit' />
             {errors.password && <p>Pasassword must be atleast 8 characters!</p>}
-        </Form>
-
+        </form>
+        </LoginBox>
     )
 
 }
