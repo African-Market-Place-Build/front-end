@@ -1,6 +1,10 @@
 import React from 'react'
 import {useForm} from 'react-hook-form'
 import styled from 'styled-components'
+import {connect} from 'react-redux'
+import {loginUser} from '../actions/marketActions'
+import {useHistory} from 'react-router-dom'
+
 
 const StyledLogin = styled.div`
     border: 2px solid lightgrey;
@@ -27,12 +31,21 @@ const StyledLogin = styled.div`
     }
 `
 
-export const Login = (props) => {
+const Login = (props) => {
     
     const {register, handleSubmit, setValue, errors } = useForm()
 
+    const history = useHistory()
+
     const onSubmit = (data) => {
-        console.log(data)
+        
+        const user = {
+            username: data.username,
+            password: data.password
+        }
+        
+        props.loginUser(user)
+        history.push('/market')
         setValue('username', '')
         setValue('password', '')
     }
@@ -46,7 +59,7 @@ export const Login = (props) => {
                         type='text'
                         name='username'
                         placeholder='Username'
-                        ref={register({required: true, pattern: /^\S+@\S+\.\S+$/})}
+                        ref={register({required: true})}
                     />
                     {errors.username && <p>Username is required from login</p>}
                 </label>
@@ -64,3 +77,6 @@ export const Login = (props) => {
         </StyledLogin>
     )
 }
+
+
+export default connect(null,{loginUser})(Login)
