@@ -1,7 +1,8 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
-
+import {connect} from 'react-redux'
+import {registerUser} from '../actions/marketActions'
 
 const LoginBox = styled.div`
     position: absolute;
@@ -16,24 +17,32 @@ const LoginBox = styled.div`
   border-radius: 10px;
 `
 
-const SignUp = () => {
-    const { register, handleSubmit, errors } = useForm()
+
+const SignUp = (props) => {
+    const { register, handleSubmit, errors, setValue } = useForm()
+
 
     const onSubmit = (data) => {
 
         const newUser = {
-            name: data.name,
+            username: data.username,
             email: data.email,
             password: data.password
         }
-        console.log(newUser)
+        props.registerUser(newUser)
+        setValue('username', '')
+        setValue('password', '')
+        setValue('email', '' )
     }
 
     return (
+
         <LoginBox>
         <form onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="name">Name: </label>
             <input type='text' placeholder='Your name' name='name' ref={register} />
+
+
             <label htmlFor="email">Email: </label>
             <input type='text'
                 placeholder='Email'
@@ -52,4 +61,4 @@ const SignUp = () => {
 
 }
 
-export default SignUp
+export default connect(null,{registerUser})(SignUp);
