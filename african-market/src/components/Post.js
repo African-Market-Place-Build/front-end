@@ -31,6 +31,7 @@ const Post = (props) => {
                 <div>{item.price}</div>
                 <div>{item.description}</div>
                 <div>{item.location}</div>
+                <div>{item.contactInfo}</div>
             </div>
         </StyledPost>
     )
