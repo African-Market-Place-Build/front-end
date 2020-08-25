@@ -45,9 +45,13 @@ function App() {
       </ul>
       </StyledNav>
       <Switch>
+        <Route path="/register">
+          <SignUp />
+        </Route>
         <Route>
           <Login />
         </Route>
+        
       </Switch>
     </div>
   );
