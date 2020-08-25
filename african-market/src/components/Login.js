@@ -3,7 +3,6 @@ import {useForm} from 'react-hook-form'
 import styled from 'styled-components'
 import axios from 'axios'
 import {connect} from 'react-redux'
-import {loginUser} from '../actions/marketActions'
 import {useHistory} from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
@@ -96,4 +95,4 @@ const Login = (props) => {
 }
 
 
-export default connect(null,{loginUser})(Login)
+export default Login;
