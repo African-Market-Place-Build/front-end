@@ -19,7 +19,8 @@ const LoginBox = styled.div`
 
 const P = styled.p`
     margin-left: 20px;
-    margin-top: 15px;
+    ${'' /* margin-top: 10px; */}
+    margin-bottom: 10px;
     color: red;
     text-align: center;
     display: inline-block;
@@ -81,10 +82,7 @@ const Button = styled.button`
                     
     }
 `
-const Span = styled.span `
-position: absolute;
-  display: block;
-`
+
 
 const SignUp = (props) => {
     const { register, handleSubmit, errors, setValue } = useForm()
@@ -121,19 +119,21 @@ const SignUp = (props) => {
                         name='email'
                         ref={register({ required: true, pattern: /^\S+@\S+\.\S+$/ })} />
                 </UserBox>
-                {errors.email && <p>Requires a valid email address</p>}
+                {errors.email && <P>Please enter a valid email address</P>}
                 <UserBox className="UserBox">
                     <label htmlFor="password"><H2>Password:</H2> </label>
+
                     <Input type='password' placeholder='Enter a password'
                         name='password'
                         ref={register({ required: true, minLength: 8 })} />
+                    {errors.password && <P>Password must be at least 8 characters</P>}
                     <Button type='submit'>
-                   
-                    Register
+
+                        Register
                     </Button>
                 </UserBox>
-                {errors.password && <P>Password must be at least 8 characters</P>}
-                {errors.email && <P>Please enter a valid email address</P>}
+
+
             </form>
         </LoginBox>
     )
