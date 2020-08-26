@@ -1,49 +1,90 @@
 import React from 'react'
-import {useForm} from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
-import {connect} from 'react-redux'
-import {loginUser} from '../actions/marketActions'
-import {useHistory} from 'react-router-dom'
+import { connect } from 'react-redux'
+import { loginUser } from '../actions/marketActions'
+import { useHistory } from 'react-router-dom'
 
+const LoginBox = styled.div`
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+`
+const UserBox = styled.div`
+position: relative;
+`
 
-const StyledLogin = styled.div`
-    border: 2px solid lightgrey;
-    border-radius: 5px;
-    width: 45%;
-    height: 40vh;
-    margin: 0 auto;
-    margin-top: 10%;
-    box-shadow: 1px 0px 12px 2px rgba(0,0,0,0.75);
-    font-family: Verdana, Geneva, sans-serif;
-    h2 {
-        text-align: center;
-        margin-top: 5%;
-        font-size: 1.3rem;
-    }
-    form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 30px;
-    }
-    label {
-        margin-bottom: 10%;
+const H2 = styled.h2` 
+   border: 1px solid ghostwhite;
+    text-align: center;
+    display: inline-block;
+    padding: 10px;
+    color:  ghostwhite;
+    font-size: 12px;
+    text-transform: uppercase;
+    overflow: hidden;
+    letter-spacing: 4px;
+    text-align: center;    
+`
+
+const Input = styled.input`
+ width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+`
+
+const Button = styled.button`
+    
+    margin-left: 97px;
+    text-align: center;
+    display: inline-block;
+    padding: 10px 20px;
+    color:  black;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px;
+    &:hover {
+        
+        
+     
+        box-shadow: 0 0 5px #99bbff,
+                    0 0 5px #99bbff,
+                    0 0 15px #99bbff,
+                    0 0 25px #99bbff;
+                    
     }
 `
 
 const Login = (props) => {
-    
-    const {register, handleSubmit, setValue, errors } = useForm()
+
+    const { register, handleSubmit, setValue, errors } = useForm()
 
     const history = useHistory()
 
     const onSubmit = (data) => {
-        
+
         const user = {
             username: data.username,
             password: data.password
         }
-        
+
         props.loginUser(user)
         history.push('/market')
         setValue('username', '')
@@ -51,32 +92,36 @@ const Login = (props) => {
     }
 
     return (
-        <StyledLogin>
-            <h2>Login</h2>
+        <LoginBox>
+            
             <form onSubmit={handleSubmit(onSubmit)}>
-                <label>Username:&nbsp;
-                    <input 
+            <UserBox>
+                <label><H2>Username:</H2>&nbsp;
+                    <Input
                         type='text'
                         name='username'
-                        placeholder='Username'
-                        ref={register({required: true})}
+                        placeholder='Enter your username'
+                        ref={register({ required: true })}
                     />
                     {errors.username && <p>Username is required from login</p>}
                 </label>
-                <label>Password: &nbsp;
-                    <input 
+                </UserBox>
+                <UserBox>
+                <label><H2>Password:</H2> &nbsp;
+                    <Input
                         type='password'
                         name='password'
-                        placeholder='Password'
-                        ref={register({required: true})}
+                        placeholder='Enter your password'
+                        ref={register({ required: true })}
                     />
                     {errors.password && <p>Password is required for login</p>}
                 </label>
-                <button>Submit</button>
+                </UserBox>
+                <Button>Login</Button>
             </form>
-        </StyledLogin>
+        </LoginBox>
     )
 }
 
 
-export default connect(null,{loginUser})(Login)
+export default connect(null, { loginUser })(Login)

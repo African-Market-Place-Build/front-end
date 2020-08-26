@@ -81,10 +81,7 @@ const Button = styled.button`
                     
     }
 `
-const Span = styled.span `
-position: absolute;
-  display: block;
-`
+
 
 const SignUp = (props) => {
     const { register, handleSubmit, errors, setValue } = useForm()
@@ -105,10 +102,10 @@ const SignUp = (props) => {
 
     return (
 
-        <LoginBox className="LoginBox">
+        <LoginBox>
             <form onSubmit={handleSubmit(onSubmit)}>
 
-                <UserBox className="user-box">
+                <UserBox>
                     <label htmlFor="name"><H2>Name:</H2> </label>
                     <Input type='text' placeholder='Enter your first and last name' name='name' ref={register} />
 
