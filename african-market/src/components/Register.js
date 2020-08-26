@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { registerUser } from '../actions/marketActions'
 
-const StyledForm = styled.form`
+const LoginBox = styled.div`
     position: absolute;
   top: 50%;
   left: 50%;
