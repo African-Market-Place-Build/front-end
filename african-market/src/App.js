@@ -5,6 +5,9 @@ import Login from './components/Login'
 import SignUp from './components/Register'
 import PrivateRoute from './components/PrivateRoute'
 import MarketPage from './components/MarketPage'
+import AddPost from './components/AddPost'
+import UserProfile from './components/UserProfile'
+
 
 const StyledNav = styled.nav`
   display: flex;
@@ -13,7 +16,7 @@ const StyledNav = styled.nav`
   font-family: Verdana, Geneva, sans-serif;
   ul {
     display: flex;
-    width: 30%;
+    width: 40%;
     li {
       margin-left: 5%;
       margin-right: 5%;
@@ -44,13 +47,21 @@ function App() {
         <li>
         <Link className='link' to='/market'>Market</Link>
         </li>
+        <li>
+        <Link className='button' to='/add'>Add Post</Link>
+        </li>
+        <li>
+        <Link className='button' to='/profile'>User Profile</Link>
+        </li>
       </ul>
       </StyledNav>
       <Switch>
+        <PrivateRoute exact path="/market" component={MarketPage}/>
+        <PrivateRoute exact path="/add" component={AddPost}/>
+        <PrivateRoute exact path="/profile" component={UserProfile}/>
         <Route path="/register">
           <SignUp />
         </Route>
-        <PrivateRoute exact path="/market" component={MarketPage}/>
         <Route>
           <Login />
         </Route>

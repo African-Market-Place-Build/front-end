@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { registerUser } from '../actions/marketActions'
+import {useHistory} from 'react-router-dom'
 
 const LoginBox = styled.div`
     position: absolute;
@@ -19,7 +20,8 @@ const LoginBox = styled.div`
 
 const P = styled.p`
     margin-left: 20px;
-    margin-top: 15px;
+    ${'' /* margin-top: 10px; */}
+    margin-bottom: 10px;
     color: red;
     text-align: center;
     display: inline-block;
@@ -85,7 +87,8 @@ const Button = styled.button`
 
 const SignUp = (props) => {
     const { register, handleSubmit, errors, setValue } = useForm()
-
+    
+    const history = useHistory()
 
     const onSubmit = (data) => {
 
@@ -95,6 +98,7 @@ const SignUp = (props) => {
             password: data.password
         }
         props.registerUser(newUser)
+        history.push('/login')
         setValue('username', '')
         setValue('password', '')
         setValue('email', '')
@@ -105,13 +109,11 @@ const SignUp = (props) => {
 
         <LoginBox>
 
-
-
             <form onSubmit={handleSubmit(onSubmit)}>
 
                 <UserBox>
                     <label htmlFor="name"><H2>Name:</H2> </label>
-                    <Input type='text' placeholder='Enter your first and last name' name='name' ref={register} />
+                    <Input type='text' placeholder='Enter your first and last name' name='username' ref={register} />
 
                 </UserBox>
 
@@ -122,25 +124,23 @@ const SignUp = (props) => {
                         name='email'
                         ref={register({ required: true, pattern: /^\S+@\S+\.\S+$/ })} />
                 </UserBox>
-                {errors.email && <p>Requires a valid email address</p>}
+                {errors.email && <P>Please enter a valid email address</P>}
                 <UserBox className="UserBox">
                     <label htmlFor="password"><H2>Password:</H2> </label>
+
                     <Input type='password' placeholder='Enter a password'
                         name='password'
                         ref={register({ required: true, minLength: 8 })} />
+                    {errors.password && <P>Password must be at least 8 characters</P>}
                     <Button type='submit'>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    Register
+
+                        Register
                     </Button>
                 </UserBox>
-                {errors.password && <P>Password must be at least 8 characters</P>}
-                {errors.email && <P>Please enter a valid email address</P>}
+
+
             </form>
         </LoginBox>
-
     )
 
 }
