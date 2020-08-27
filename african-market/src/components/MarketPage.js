@@ -35,20 +35,21 @@ const MarketPage = (props) => {
     
 
     const onSubmit = (data) => {
-        
+        console.log(data.filter)
         axiosWithAuth()
             .get('https://african-market-place-bw.herokuapp.com/api/users/allItems')
             .then((res) => {
                 // console.log(res.data)
                 const newItems = []
                 res.data.filter(function(item) {
-                    if(item.category === data.filter){
-                        newItems.push(item)
-                    } else {
-                        newItems.push(item)
-                    }
+                    if(data.filter === 'all'){
+                         newItems.push(item)
+                    } else if (data.filter == item.category){
+                        return newItems.push(item)
+                    } 
                 })
                 setItems(newItems)
+                console.log(items)
             })
             .catch(err => {
                 console.log(err)
@@ -83,9 +84,9 @@ const MarketPage = (props) => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <select name="filter" ref={register}>
                     <option value="all">All Items</option>
-                    <option value="phones">Phones</option>
-                    <option value="tablets">Tablets</option>
-                    <option value="laptops">Laptops</option>
+                    <option value="phone">Phones</option>
+                    <option value="tablet">Tablets</option>
+                    <option value="laptop">Laptops</option>
                 </select>
                 <button>Filter</button>
             </form>
