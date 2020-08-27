@@ -13,21 +13,38 @@ const StyledNav = styled.nav`
   display: flex;
   justify-content: space-between;
   padding: 30px;
-  font-family: Verdana, Geneva, sans-serif;
+  font-family: Helvetica, Arial, Sans-Serif;
+  background: linear-gradient(grey,rgba(0,0,0,.5));
+  
+  h1{
+    color: ghostwhite;
+    font-size: 2rem;
+    font-weight: lighter;
+  }
   ul {
     display: flex;
     width: 40%;
     li {
       margin-left: 5%;
       margin-right: 5%;
+      
     }
   }
   .link {
     color: black;
     text-decoration: none;
+    color: white;
+    font-weight: lighter;
     &:hover{
       color: tomato;
     }
+  }
+  .button{
+    color: ghostwhite;
+    text-decoration: none;
+    padding: 3px;
+    font-weight: lighter;
+    
   }
 `
 
