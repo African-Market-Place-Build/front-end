@@ -9,69 +9,115 @@ import AddPost from './components/AddPost'
 import UserProfile from './components/UserProfile'
 
 
-const StyledNav = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  padding: 30px;
-  font-family: Helvetica, Arial, Sans-Serif;
-  background: linear-gradient(grey,rgba(0,0,0,.5));
-  
-  h1{
-    color: ghostwhite;
-    font-size: 2rem;
-    font-weight: lighter;
-  }
-  ul {
+
+const H2 = styled.h2` 
+
+   border: 1px solid ghostwhite;
+    text-align: center;
     display: flex;
-    width: 40%;
-    li {
-      margin-left: 5%;
-      margin-right: 5%;
+    justify-content: center;
+    padding: 10px;
+   width: 250px;
+    color:  ghostwhite;
+    font-size: 12px;
+    text-transform: uppercase;
+    overflow: hidden;
+    letter-spacing: 4px;
+
+    .link {
+      &:hover {
+        color: darkslategray;
+        
+      }
+      text-decoration: none;
+      color: ghostwhite;
+    }
+
       
+`
+
+const H3 = styled.h2` 
+   
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-content: center;
+       
+    color:  ghostwhite;
+    font-size: 12px;
+    text-transform: uppercase;
+    overflow: hidden;
+    letter-spacing: 4px;
+
+    .link {
+     ${'' /* margin-left: 400px; */}
+      text-decoration: none;
+      color: darkslategray;
+      &:hover {
+        color: ghostwhite;
+      }
+      ${'' /* border: 1px solid ghostwhite; */}
     }
-  }
-  .link {
-    color: black;
-    text-decoration: none;
-    color: white;
-    font-weight: lighter;
-    &:hover{
-      color: tomato;
-    }
-  }
-  .button{
-    color: ghostwhite;
-    text-decoration: none;
-    padding: 3px;
-    font-weight: lighter;
-    
-  }
+
+      
+`
+
+const StyledNav = styled.nav`
+  
+
+ margin-left: 1100px;
+ margin-bottom: 200px;
+  padding: 30px;
+  
+ 
+
+
+
+
+  
+  margin: 30px;
+  margin-left: 100px;
+  width: 600px;
+  
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+  
+
+
 `
 
 function App() {
 
   return (
     <div className="App">
-      <StyledNav>
-      <h1>African Marketplace</h1>
-      <ul>
-        <li>
+      <H2><Link className ='link' to='/market'>African Marketplace</Link></H2>
+
+    
+     
+        
+        <H3>
           <Link className='link' to='/register'>Sign Up</Link>
-        </li>
-        <li>
+       
+        
           <Link className='link' to='/login'>Login</Link>
-        </li>
-        <li>
+       
+        
         <Link className='link' to='/market'>Market</Link>
-        </li>
-        <li>
-        <Link className='button' to='/add'>Add Post</Link>
-        </li>
-        <li>
-        <Link className='button' to='/profile'>User Profile</Link>
-        </li>
-      </ul>
-      </StyledNav>
+       
+        
+        <Link className='link' to='/add'>Add Post</Link>
+       
+        
+        <Link className='link' to='/profile'>User Profile</Link>
+        </H3>
+     
+      
+     
+      
       <Switch>
         <PrivateRoute exact path="/market" component={MarketPage}/>
         <PrivateRoute exact path="/add" component={AddPost}/>
