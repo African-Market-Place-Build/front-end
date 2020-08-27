@@ -39,10 +39,19 @@ const MarketPage = (props) => {
         axiosWithAuth()
             .get('https://african-market-place-bw.herokuapp.com/api/users/allItems')
             .then((res) => {
-
+                // console.log(res.data)
+                const newItems = []
+                res.data.filter(function(item) {
+                    if(item.category === data.filter){
+                        newItems.push(item)
+                    } else {
+                        newItems.push(item)
+                    }
+                })
+                setItems(newItems)
             })
             .catch(err => {
-                
+                console.log(err)
             })
 
         // const newItems = []
