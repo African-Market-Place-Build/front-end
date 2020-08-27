@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { registerUser } from '../actions/marketActions'
 import {useHistory} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 const LoginBox = styled.div`
     position: absolute;
@@ -16,6 +17,17 @@ const LoginBox = styled.div`
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0,0,0,.6);
   border-radius: 10px;
+  .message{
+      color: white;
+      margin-top: 20px;
+      font-weight: light;
+      font-size: .8rem;
+      text-align: center;
+      color: grey;   
+  }
+  .messageLink {
+      color: ghostwhite;
+  }
 `
 
 const P = styled.p`
@@ -105,7 +117,6 @@ const SignUp = (props) => {
     }
 
     return (
-
         <LoginBox>
             <form onSubmit={handleSubmit(onSubmit)}>
 
@@ -136,9 +147,11 @@ const SignUp = (props) => {
                     </Button>
                 </UserBox>
 
-
             </form>
+            <div className='message'>Do you already have an account? <Link className='messageLink' to='/login'>Login here</Link></div>
         </LoginBox>
+        
+    
     )
 
 }

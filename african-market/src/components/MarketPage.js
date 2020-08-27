@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import { axiosWithAuth } from '../utils/axiosWithAuth'
 import styled from 'styled-components'
 import Post from './Post'
+import {useForm} from 'react-hook-form'
 
 const StyledMarket = styled.div`
     width: 100%;
@@ -16,19 +17,39 @@ const StyledMarket = styled.div`
         flex-direction: column;
         align-items: center;
     }
+    form{
+        display: flex;
+        justify-content: center;
+    }
 `
 
 const MarketPage = (props) => {
     console.log(props.user)
     
-    const [items, setItems] = useState([])
+    const [items, setItems] = useState([])    
 
-    console.log(items)
+    
 
+    const {register, handleSubmit} = useForm()
+
+    
+
+    const onSubmit = (data) => {
+        
+        const newItems = []
+        items.filter(function(item) {
+            if(item.category === data.filter){
+                newItems.push(item)
+            }
+        })
+        setItems(newItems)
+    }
+    
     useEffect(() => {
         axiosWithAuth()
-        .get('https://african-market-place-bw.herokuapp.com/api/items')
+        .get('https://african-market-place-bw.herokuapp.com/api/users/allItems')
         .then((res) => {
+            console.log(res)
             setItems(res.data)
         })
         .catch(err => {
@@ -41,6 +62,15 @@ const MarketPage = (props) => {
             <div className='header'>
                 <h1>Marketplace</h1>
             </div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <select name="filter" ref={register}>
+                    <option value="all">All Items</option>
+                    <option value="phones">Phones</option>
+                    <option value="tablets">Tablets</option>
+                    <option value="laptops">Laptops</option>
+                </select>
+                <button>Filter</button>
+            </form>
             <div className='posts'>
                 {items.map(item => {
                 return <Post key={item.id} item={item}/> 
