@@ -24,25 +24,34 @@ const StyledMarket = styled.div`
 `
 
 const MarketPage = (props) => {
-    console.log(props.user)
     
-    const [items, setItems] = useState([])    
-
+    // console.log(props.user)
     
+    const [items, setItems] = useState([])
 
     const {register, handleSubmit} = useForm()
-
+    
+    
     
 
     const onSubmit = (data) => {
         
-        const newItems = []
-        items.filter(function(item) {
-            if(item.category === data.filter){
-                newItems.push(item)
-            }
-        })
-        setItems(newItems)
+        axiosWithAuth()
+            .get('https://african-market-place-bw.herokuapp.com/api/users/allItems')
+            .then((res) => {
+
+            })
+            .catch(err => {
+                
+            })
+
+        // const newItems = []
+        // items.filter(function(item) {
+        //     if(item.category === data.filter){
+        //         newItems.push(item)
+        //     }
+        // })
+        
     }
     
     useEffect(() => {

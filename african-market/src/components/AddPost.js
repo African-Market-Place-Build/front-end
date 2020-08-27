@@ -1,6 +1,8 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import {useForm} from 'react-hook-form'
+import { axiosWithAuth } from '../utils/axiosWithAuth'
+import {connect} from 'react-redux'
 
 const StyledPostForm = styled.div`
     text-align: center;
@@ -8,6 +10,13 @@ const StyledPostForm = styled.div`
 
 const AddPost = (props) => {
     
+    
+
+    const user = props.user[0].userInfo
+
+    const userId = user.id
+    
+
     const {register, handleSubmit, setValue} = useForm()
     
     const onSubmit = (data) => {
@@ -18,15 +27,26 @@ const AddPost = (props) => {
             description: data.description,
             imageLink: data.imageLink,
             location: data.location,
-            price: data.price
+            price: data.price,
+            category: data.category
         }
-        console.log(newPost)
+
+        axiosWithAuth()
+            .post(`https://african-market-place-bw.herokuapp.com/api/users/${userId}/items`, newPost)
+            .then((res) => {
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        // console.log(newPost)
         setValue('name', '')
         setValue('contactInfo', '')
         setValue('description', '')
         setValue('imageLink', '')
         setValue('location', '')
         setValue('price', '')
+        setValue('category', '')
     }
 
     return (
@@ -75,10 +95,23 @@ const AddPost = (props) => {
                     ref={register}
                     /> 
                 </label>
+                <label>Category:&nbsp;
+                    <input 
+                    type='text'
+                    name='category'
+                    ref={register}
+                    /> 
+                </label>
                 <button>Submit Post</button>
             </form>
         </StyledPostForm>
     )
 }
 
-export default AddPost;
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps,{})(AddPost);
