@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import Axios from 'axios'
 import { axiosWithAuth } from '../utils/axiosWithAuth'
-import Post from './Post'
-
-
+import UsersPost from './UsersPost'
+import {Route} from 'react-router-dom'
+import EditPost from './EditPost'
 
 const UserProfile = (props) => {
 
@@ -36,10 +36,10 @@ const UserProfile = (props) => {
 
     return (
         <div>
-        <div>User Profile</div>
-        {userItems.map((item) => {
-            return <Post key={item.id} item={item}></Post>
-        })}
+            <div>User Profile</div>
+            {userItems.map((item) => {
+                return <UsersPost key={item.id} item={item}></UsersPost>
+            })}
         </div>
     )
 }
