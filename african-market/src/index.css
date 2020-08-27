@@ -28,9 +28,9 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	margin:0;
-  padding:0;
-  font-family: sans-serif;
-  background: linear-gradient(#3a7cf7, ghostwhite) fixed;
+	padding:0;
+	font-family: sans-serif;
+	background: linear-gradient(#3a7cf7, ghostwhite) fixed;
 }
 ol, ul {
 	list-style: none;
@@ -48,3 +48,12 @@ table {
 	border-spacing: 0;
 }
 
+.App {
+	
+}
+
+
+.link {
+
+	/* margin-left: 400px; */
+}
