@@ -5,7 +5,7 @@ import axios from 'axios'
 import {connect} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-
+import {Link} from 'react-router-dom'
 
 const LoginBox = styled.div`
     position: absolute;
@@ -18,6 +18,17 @@ const LoginBox = styled.div`
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0,0,0,.6);
   border-radius: 10px;
+  .message{
+    color: white;
+    margin-top: 20px;
+    font-weight: light;
+    font-size: .8rem;
+    text-align: center;
+    color: grey;   
+}
+.messageLink {
+    color: ghostwhite;
+}
 `
 const UserBox = styled.div`
 position: relative;
@@ -147,6 +158,7 @@ const Login = (props) => {
                 </UserBox>
                 <Button>Login</Button>
             </form>
+            <div className='message'>Do you need an account? <Link className='messageLink' to='/register'>Register</Link></div>
         </LoginBox>
     )
 }

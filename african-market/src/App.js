@@ -9,6 +9,7 @@ import AddPost from './components/AddPost'
 import UserProfile from './components/UserProfile'
 
 
+
 const H2 = styled.h2` 
 
    border: 1px solid ghostwhite;
@@ -85,6 +86,8 @@ const StyledNav = styled.nav`
   box-shadow: 0 15px 25px rgba(0,0,0,.6);
   border-radius: 10px;
   
+
+
 `
 
 function App() {
