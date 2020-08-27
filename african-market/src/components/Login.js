@@ -2,7 +2,7 @@ import React from 'react'
 import {useForm} from 'react-hook-form'
 import styled from 'styled-components'
 import axios from 'axios'
-import {connect} from 'react-redux'
+
 import {useHistory} from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import {Link} from 'react-router-dom'
