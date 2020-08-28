@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { registerUser } from '../actions/marketActions'
 import {useHistory} from 'react-router-dom'
 import {Link} from 'react-router-dom'
+import { motion } from "framer-motion"
 
 const LoginBox = styled.div`
     position: absolute;
@@ -141,10 +142,10 @@ const SignUp = (props) => {
                         name='password'
                         ref={register({ required: true, minLength: 8 })} />
                     {errors.password && <P>Password must be at least 8 characters</P>}
-                    <Button type='submit'>
-
-                        Register
-                    </Button>
+                    <Button type='submit'><motion.div whileHover={{
+                    scale: 1.2,
+                    transition: { duration: 1 },
+                }}>Register</motion.div></Button>
                 </UserBox>
 
             </form>
