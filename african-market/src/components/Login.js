@@ -1,11 +1,11 @@
 import React from 'react'
-import {useForm} from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
 import axios from 'axios'
-
-import {useHistory} from 'react-router-dom'
+import { motion } from "framer-motion"
+import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const LoginBox = styled.div`
     position: absolute;
@@ -97,66 +97,69 @@ const P = styled.p`
 export const LOGIN = "LOGIN"
 
 const Login = (props) => {
-    
+
     const dispatch = useDispatch()
 
-    const {register, handleSubmit, setValue, errors } = useForm()
+    const { register, handleSubmit, setValue, errors } = useForm()
 
     const history = useHistory()
 
     const onSubmit = async (data) => {
-        
+
         const user = {
             username: data.username,
             password: data.password
         }
-        
+
         axios
-        .post("https://african-market-place-bw.herokuapp.com/api/auth/login", user)
-        .then((res) => {
-            localStorage.setItem('token', res.data.token)
-            console.log(res)
-            history.push('/market')
-            dispatch({type: LOGIN, payload: res.data})
-        })
-        .catch(err => {
-            console.log(err)
-        })
+            .post("https://african-market-place-bw.herokuapp.com/api/auth/login", user)
+            .then((res) => {
+                localStorage.setItem('token', res.data.token)
+                console.log(res)
+                history.push('/market')
+                dispatch({ type: LOGIN, payload: res.data })
+            })
+            .catch(err => {
+                console.log(err)
+            })
         setValue('username', '')
         setValue('password', '')
-        
-        
+
+
     }
 
     return (
         <LoginBox>
-         
+
             <form onSubmit={handleSubmit(onSubmit)}>
-            <UserBox>
-                <label><H2>Username:</H2>&nbsp;
-                    <Input 
-                        type='text'
-                        name='username'
-                        placeholder='Enter your username'
-                        ref={register({required: true})}
-                    />
-                    
-                    {errors.username && <P>Username is required from login</P>}
-                    
-                </label>
+                <UserBox>
+                    <label><H2>Username:</H2>&nbsp;
+                    <Input
+                            type='text'
+                            name='username'
+                            placeholder='Enter your username'
+                            ref={register({ required: true })}
+                        />
+
+                        {errors.username && <P>Username is required from login</P>}
+
+                    </label>
                 </UserBox>
                 <UserBox>
-                <label><H2>Password:</H2> &nbsp;
-                    <Input 
-                        type='password'
-                        name='password'
-                        placeholder='Enter your password'
-                        ref={register({required: true})}
-                    />
-                    {errors.password && <P>Password is required for login</P>}
-                </label>
+                    <label><H2>Password:</H2> &nbsp;
+                    <Input
+                            type='password'
+                            name='password'
+                            placeholder='Enter your password'
+                            ref={register({ required: true })}
+                        />
+                        {errors.password && <P>Password is required for login</P>}
+                    </label>
                 </UserBox>
-                <Button>Login</Button>
+                <Button type='submit'><motion.div whileHover={{
+                    scale: 1.2,
+                    transition: { duration: 1 },
+                }}>Login</motion.div></Button>
             </form>
             <div className='message'>Do you need an account? <Link className='messageLink' to='/register'>Register</Link></div>
         </LoginBox>
